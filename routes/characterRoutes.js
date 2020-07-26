@@ -13,7 +13,10 @@ router.post('/new', async(req, res)=> {
             name, 
             level,
             race,
-            job,  
+            languageChoice,
+            traitChoice,
+            job,
+            profChoice,  
             strength,
             dexterity,
             constitution,
@@ -74,6 +77,20 @@ router.put('/:id', auth, async(req, res) =>{
         }
     } catch (error) {
         res.status(500).json({ error: error.message })
+    }
+})
+
+router.delete(':/id', auth, async(req, res) => {
+    try{
+        if(!auth){
+            res.status(400).json({msg: "not authorized to delete this document"})
+        } else {
+            Character.findByIdAndDelete(req.body)
+                res.status(204)
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+
     }
 })
 
