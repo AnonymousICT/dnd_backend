@@ -6,10 +6,10 @@ const {Character, sanitizeInput} = require('../models/characterModel')
 
 router.post('/new', async(req, res)=> {
     try {
-        let {name, level, race, job, strength, dexterity, constitution, intelligence, wisdom, charisma} = req.body
+        let {name, userId, level, race, job, strength, dexterity, constitution, intelligence, wisdom, charisma, languageChoice, traitChoice, profChoice} = req.body
 
         const newCharacter = new Character({
-            user: User.id,
+            userId: userId,
             name, 
             level,
             race,
@@ -35,7 +35,7 @@ router.post('/new', async(req, res)=> {
 // get's all characters
 router.get('/', async(req, res) => {
     try {
-        const char = await Character.find(req.params.body)
+        const char = await Character.find()
         res.status(200).json(char)
         
     } catch (err) {
@@ -50,8 +50,9 @@ router.get('/:id', auth, async (req,res)=> {
             res.status(400).json({msg: "not authorized to view this document"})
         } 
         else {
-            const user = await User.findById(req.user); //fetch user here
-            const char = await Character.find({ _id: mongoose.Types.ObjectId(req.params.id), userId: mongoose.Types.ObjectId(user._id)})
+            const char = await Character.find({ _id: mongoose.Types.ObjectId(req.params.id), userId: mongoose.Types.ObjectId(req.user)})
+            console.log(req.user, req.params.id)
+
             if(char) {
                 res.status(200).json(char)
             } else {

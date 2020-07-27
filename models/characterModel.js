@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const characterSchema = new mongoose.Schema({
-    _id: {type: Schema.Types.ObjectId},
     userId: {type: Schema.Types.ObjectId},
     name: {type: String},
     level: {type: Number},
