@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const mongoose = require('mongoose')
 const auth = require('../middleware/auth')
-const User = require('../models/userModels')
 const {Character, sanitizeInput} = require('../models/characterModel')
 
 router.post('/new', async(req, res)=> {
@@ -50,9 +49,7 @@ router.get('/:id', auth, async (req,res)=> {
             res.status(400).json({msg: "not authorized to view this document"})
         } 
         else {
-            const char = await Character.find({ _id: mongoose.Types.ObjectId(req.params.id), userId: mongoose.Types.ObjectId(req.user)})
-            console.log(req.user, req.params.id)
-
+            const char = await Character.findOne({ _id: mongoose.Types.ObjectId(req.params.id), userId: mongoose.Types.ObjectId(req.user)})
             if(char) {
                 res.status(200).json(char)
             } else {
