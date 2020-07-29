@@ -32,9 +32,9 @@ router.post('/new', async(req, res)=> {
 })
 
 // get's all characters
-router.get('/', async(req, res) => {
+router.get('/', auth, async(req, res) => {
     try {
-        const char = await Character.find()
+        const char = await Character.find({ userId: mongoose.Types.ObjectId(req.user)})
         res.status(200).json(char)
         
     } catch (err) {
