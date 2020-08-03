@@ -16,6 +16,7 @@ const characterSchema = new mongoose.Schema({
     intelligence: {type: Number},
     wisdom: {type: Number},
     charisma: {type: Number},
+    items: {type: Array}
 })
 
 const immutableElements = [
