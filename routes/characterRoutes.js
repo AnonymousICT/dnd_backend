@@ -5,13 +5,14 @@ const {Character, sanitizeInput} = require('../models/characterModel')
 
 router.post('/new', async(req, res)=> {
     try {
-        let {name, userId, level, race, job, strength, dexterity, constitution, intelligence, wisdom, charisma, languageChoice, traitChoice, profChoice, items} = req.body
+        let {name, userId, level, race, job, currentHP, strength, dexterity, constitution, intelligence, wisdom, charisma, languageChoice, traitChoice, profChoice, items} = req.body
 
         const newCharacter = new Character({
             userId: userId,
             name, 
             level,
             race,
+            currentHP,
             languageChoice,
             traitChoice,
             job,

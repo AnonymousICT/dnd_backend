@@ -6,6 +6,7 @@ const characterSchema = new mongoose.Schema({
     name: {type: String},
     level: {type: Number},
     race: {type: String},
+    currentHP: {type: Number},
     languageChoice: {type: String},
     traitChoice: {type:String},
     job: {type: String},
