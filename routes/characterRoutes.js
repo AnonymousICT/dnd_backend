@@ -5,7 +5,7 @@ const {Character, sanitizeInput} = require('../models/characterModel')
 
 router.post('/new', async(req, res)=> {
     try {
-        let {name, userId, level, race, job, currentHP, strength, dexterity, constitution, intelligence, wisdom, charisma, languageChoice, traitChoice, profChoice, items} = req.body
+        let {name, userId, level, race, job, spells, currentHP, strength, dexterity, constitution, intelligence, wisdom, charisma, languageChoice, traitChoice, profChoice, items} = req.body
 
         const newCharacter = new Character({
             userId: userId,
@@ -23,7 +23,8 @@ router.post('/new', async(req, res)=> {
             intelligence,
             wisdom,
             charisma,
-            items
+            items,
+            spells
         })
 
         const savedCharacter = await newCharacter.save()
