@@ -13,6 +13,7 @@ router.post("/new", async (req, res) => {
             raceData,
             job,
             classData,
+            raceProfChoice:
             languageChoice,
             traitChoice,
             profChoice,
@@ -36,6 +37,7 @@ router.post("/new", async (req, res) => {
             raceData,
             job,
             classData,
+            raceProfChoice:
             languageChoice,
             traitChoice,
             profChoice,
